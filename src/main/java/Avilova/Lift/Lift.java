@@ -2,15 +2,40 @@ package Avilova.Lift;
 import java.util.ArrayList;
 
 public class Lift {
-    private boolean rout; //направление true-вверх false-вниз
-    private int location; //местонахождение
-    private int vol; //вместительность
-    private int possibleInitialFloor; //возможный начальный этаж
-    private int possibleFinaleFloor; //возможный конечный этаж
-    public ArrayList<Passenger> passengerList; //список пассажиров
-    private int number; //номер лифта
+    /**направление движения лифта true-вверх false-вниз*/
+    private boolean rout;
+
+    /**этаж местонахождения лифта*/
+    private int location;
+
+    /**вместительность лифта*/
+    private int vol;
+
+    /**возможный начальный этаж лифта*/
+    private int possibleInitialFloor;
+
+    /**возможный конечный этаж лифта*/
+    private int possibleFinaleFloor;
+
+    /**список пассажиров лифта*/
+    public ArrayList<Passenger> passengerList;
+
+    /**номер лифта*/
+    private int number;
+
+    /**контроллер лифта*/
     public ControllerOfLift controller;
 
+    /**
+     * конструктор лифта
+     * @param rout-направление движения лифта true-вверх false-вниз
+     * @param location-этаж местонахождения лифта
+     * @param vol-вместительность лифта
+     * @param possibleInitialFloor-возможный начальный этаж лифта
+     * @param possibleFinaleFloor-*возможный конечный этаж лифта
+     * @param numberOfPassenger-колличество пассажиров, которые хотят воспользоваться данным лифтом
+     * @param number-номер лифта
+     */
     Lift(boolean rout, int location,int vol,int possibleInitialFloor,int possibleFinaleFloor, int numberOfPassenger, int number){
         this.rout = rout;
         this.location = location;
@@ -54,6 +79,11 @@ public class Lift {
         return number;
     }
 
+    /**
+     * создания списка пассажиров
+     * @param numberOfPassenger-колличество пассажиров, которые хотят воспользоваться данным лифтом
+     * @return список пассажиров
+     */
     public ArrayList<Passenger> createPassanger(int numberOfPassenger){
         ArrayList<Passenger> passengerList= new ArrayList<Passenger>();
         for (int i = 0; i < numberOfPassenger; i++)
@@ -61,6 +91,10 @@ public class Lift {
         return  passengerList;
     }
 
+    /**
+     * нахождения числа пассажиров в лифте
+     * @return кол-во пассажиров
+     */
     public int colOfPassangeInLift(){
         int col = 0;
         for (int i = 0; i < passengerList.size(); i++)

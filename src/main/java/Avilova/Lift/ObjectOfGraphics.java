@@ -3,11 +3,25 @@ import java.io.Console;
 
 public class ObjectOfGraphics implements IDisplayGraphics, IDisplayInfo {
 
-    private Lift lift;  //лифт
-    private String  [][] matr; //матрица отрисовки
-    private int numberOfFloors; //этажность
+    /**лифт*/
+    private Lift lift;
+
+    /**матрица отрисовки*/
+    private String  [][] matr;
+
+    /**этажность*/
+    private int numberOfFloors;
+
+    /**консоль*/
     private Console console;
 
+    /**
+     * конструктор объекта отрисовки
+     * @param lift-лифт
+     * @param numberOfFloors-этажность
+     * @param matr-матрица отрисовки
+     * @param console-консоль
+     */
     ObjectOfGraphics(Lift lift, int numberOfFloors, String [][] matr, Console console){
         this.lift = lift;
         this.numberOfFloors = numberOfFloors;
@@ -15,6 +29,10 @@ public class ObjectOfGraphics implements IDisplayGraphics, IDisplayInfo {
         this.console = console;
     }
 
+    /**
+     * проходим по всем пассажирам и отображаем их направление на каждом этаже
+     * отображаем сам лифт
+     */
     public void showGraphics(){
         clearMatrix();
 
@@ -30,6 +48,9 @@ public class ObjectOfGraphics implements IDisplayGraphics, IDisplayInfo {
         matr[2 * numberOfFloors - 2 * lift.getLocation() + 1][lift.getNumber() + 3 * (lift.getNumber() + 1) + 2] = " # ";
     }
 
+    /**
+     * выводит на консоль всю информацию о лифте
+     */
     public void showInfo() {
 
         if (lift.passengerList.size() != 0) {
@@ -60,6 +81,9 @@ public class ObjectOfGraphics implements IDisplayGraphics, IDisplayInfo {
         }
     }
 
+    /**
+     * очищает матрицу отрисовки от записей местонахождения лифта и движения пассажиров
+     */
     public void clearMatrix(){
         for (int i = lift.getPossibleInitialFloor(); i <= lift.getPossibleFinaleFloor(); i++) {
             matr[2 * numberOfFloors - 2 * i + 1][lift.getNumber() + 3 * (lift.getNumber() + 1)] = "   "; //направление вверх
@@ -68,6 +92,9 @@ public class ObjectOfGraphics implements IDisplayGraphics, IDisplayInfo {
         }
     }
 
+    /**
+     * выводит на консоль всю информацию о пассажирах лифта
+     */
     public void showInfoPassange(){
 
         for (int i = 0; i < lift.passengerList.size(); i++){

@@ -6,13 +6,30 @@ import java.util.ArrayList;
 
 public class PrintConsole {
 
-    private ArrayList<Lift> lifts; //список лифтов
-    private String [][] matr; //матрица отрисовки
-    private int numberOfFloors; //этажность
-    private String strinfo; //инфомационная строка
-    private Panel panel; //панель
+    /**список лифтов*/
+    private ArrayList<Lift> lifts;
+
+    /**матрица отрисовки*/
+    private String [][] matr;
+
+    /**этажность*/
+    private int numberOfFloors;
+
+    /**инфомационная строка*/
+    private String strinfo;
+
+    /**панель*/
+    private Panel panel;
+
+    /**консоль*/
     private Console console;
 
+    /**
+     * конструктор
+     * @param lifts-список лифтов
+     * @param numberOfFloors-этажность
+     * @param console-консоль
+     */
     PrintConsole(ArrayList<Lift> lifts, int numberOfFloors, Console console){
         this.lifts = lifts;
         this.numberOfFloors = numberOfFloors;
@@ -23,6 +40,9 @@ public class PrintConsole {
         panel = new Panel(matr, numberOfFloors, lifts, this.console);
     }
 
+    /**
+     * заполнение матрицы отрисовки
+     */
     private void createMatr() {
 
         for (int i = 0; i <= 2 * numberOfFloors; i++)
@@ -54,10 +74,11 @@ public class PrintConsole {
         ;
     }
 
+
+    /**
+     * вызов методов отображение матрицы отрисовки, информации о лифтах и пассажирах
+     */
     public void show(){
-
-
-
 
         panel.showGraphics();
         printMatr();
@@ -71,6 +92,9 @@ public class PrintConsole {
         }
     }
 
+    /**
+     * отображение матрицы в консоль
+     */
     private void printMatr(){
         for (int i = 0; i <= 2 * numberOfFloors; i ++) {
             for (int j = 0; j <= 6 + (lifts.size() - 1) * 4; j++)
@@ -79,6 +103,9 @@ public class PrintConsole {
         }
     }
 
+    /**
+     *  отображение информации о пассажирах в консоль
+     */
     public void ShowInfoPassange(){
         panel.showInfoPassange();
     }

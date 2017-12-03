@@ -5,17 +5,31 @@ import java.util.ArrayList;
 
 public class UserInterfase {
 
-    private ArrayList<Lift> lifts; //список лифтов
-    private int numberOfFloors; //этажность
+    /**список лифтов*/
+    private ArrayList<Lift> lifts;
+
+    /**этажность*/
+    private int numberOfFloors;
+
+    /**система лифтов*/
     private SystemOfLifts systemOfLifts;
+
+    /**консоль*/
     private Console console;
 
+    /**
+     * конструктор
+     * @param console-консоль
+     */
     UserInterfase(Console console){
         lifts = new ArrayList<Lift>();
         numberOfFloors = 0;
         this.console = console;
     }
 
+    /**
+     * ввод информации пользователем
+     */
     public void write(){
 
         String str = "";
@@ -67,6 +81,11 @@ public class UserInterfase {
         }
     }
 
+    /**
+     * проверка является ли это числом, которое больше нуля
+     * @param str-строка
+     * @return true-да, false-нет
+     */
     public static boolean isDigital(String str) {
         if(str.length()==0 || str.length() > 20)
             return false;
@@ -78,6 +97,9 @@ public class UserInterfase {
         return true;
     }
 
+    /**
+     * вызов метода начала движения системы лифтов
+     */
     public void run(){
         systemOfLifts = new SystemOfLifts(numberOfFloors,lifts, console);
         systemOfLifts.run();

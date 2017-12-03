@@ -4,11 +4,24 @@ import java.util.ArrayList;
 import java.io.Console;
 
 public class SystemOfLifts {
-    private ArrayList<Lift> lifts; //список лифтов
-    private int numberOfFloors; //этажность
-    private PrintConsole printConsole; //консоль для отрисовки
+    /**список лифтов*/
+    private ArrayList<Lift> lifts;
+
+    /**этажность*/
+    private int numberOfFloors;
+
+    /**консоль для отрисовки*/
+    private PrintConsole printConsole;
+
+    /**консоль*/
     Console console;
 
+    /**
+     * конструкто
+     * @param numberOfFloors-этажность
+     * @param lifts-список лифтов
+     * @param console-консоль
+     */
     SystemOfLifts(int numberOfFloors, ArrayList<Lift> lifts, Console console){
        this.numberOfFloors = numberOfFloors;
        this.lifts = lifts;
@@ -16,8 +29,10 @@ public class SystemOfLifts {
         this.console = console;
     }
 
+    /**
+     * запуск движения всех лифтов до тех пор пока все пассажиры не будут доставлены к месту
+     */
     public void run(){
-
 
         printConsole.show();
         while (!isEnd()) {
@@ -29,6 +44,10 @@ public class SystemOfLifts {
 
     }
 
+    /**
+     * проверяет конец работы лифта
+     * @return true-пассажиров нет, false-пассажиры есть
+     */
     public boolean isEnd (){
         for (Lift lift : lifts)
             if (lift.passengerList.size() != 0)

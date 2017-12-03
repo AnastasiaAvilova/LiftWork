@@ -2,12 +2,25 @@ package Avilova.Lift;
 
 public class ActionUp implements IAction{
 
+    /**лифт, для которого осуществляется движение*/
     private Lift lift;
 
+    /**
+     * конструктор
+     * @param lift-лифт
+     */
     ActionUp(Lift lift){
         this.lift = lift;
     }
 
+    /**
+     * движение лифта, подходит для тех, кто движется вверх, сначала пассажиры выходят, потом заходят,
+     * если паасажир отказался, т.е. isSuit = false или грузоподъемность не позвоняет ему зайти,
+     * то поле isLater помечается true и лифт приедет за ним, но уже в следующий раз.
+     * Лифт опускается, если пассажир находится ниже, чем лифт,
+     * иначе поднимается, если пассажир находится выше лифта
+     * @param number-этаж назначения
+     */
     public void run(int number) {
         int location = lift.getLocation();
 
@@ -31,7 +44,7 @@ public class ActionUp implements IAction{
 
             if (lift.getLocation() == number) {
 
-                while (anyoneElse(number)) {
+                while (anyoneElse()) {
                     //выходят
                     for (int i = 0; i < lift.passengerList.size(); i++)
                         if ((lift.passengerList.get(i).getIsInLift()) &&
@@ -56,7 +69,11 @@ public class ActionUp implements IAction{
         }
     }
 
-    //найти минимальный этаж куда ехать
+    /**
+     * найти этаж назначения, на котором кто-либо выходит или заходит
+     * и расстояние до него самое наименьшее
+     * @return
+     */
     public int find(){
         int min = lift.getPossibleFinaleFloor();
 
@@ -71,8 +88,11 @@ public class ActionUp implements IAction{
         return min;
     }
 
-
-    public boolean anyoneElse(int number){
+    /**
+     * посмотеть, есть ли еще пассажиры, к которым лифт не приезжал
+     * @return true-есть пассажиры, false-нет пассажиров
+     */
+    public boolean anyoneElse(){
         for (int i = 0; i < lift.passengerList.size(); i++)
         if ((lift.passengerList.get(i).getIsInLift()) &&
                 (lift.passengerList.get(i).getFloorOfDestination() == lift.getLocation()))
