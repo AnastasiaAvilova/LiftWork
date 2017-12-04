@@ -1,5 +1,8 @@
 package Avilova.Lift;
 
+/**
+ *
+ */
 public class Passenger {
 
     /** этаж отправления*/
